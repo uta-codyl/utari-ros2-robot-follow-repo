@@ -1,0 +1,104 @@
+
+launch:
+
+# Robot 0000
+- node:
+    pkg: "robot_follow_pkg"
+    exec: "republish_tf.py"
+    name: "republish_tf_odom_base"
+    namespace: "a200_0000"
+    param:
+    -
+      name: "republish_tf_child_frame_id"
+      value: "base_link"
+    -
+      name: "republish_tf_frame_id"
+      value: "odom"
+    -
+      name: "republish_tf_child_prefix"
+      value: "a0"
+    -
+      name: "republish_tf_prefix"
+      value: "a0"
+    -
+      name: "republish_tf_input_topic"
+      value: "tf"
+    #~ -
+      #~ name: "republish_tf_output_topic"
+      #~ value: "a1"
+
+- node:
+    pkg: "robot_follow_pkg"
+    exec: "republish_tf.py"
+    name: "republish_tf_map_odom"
+    namespace: "a200_0000"
+    param:
+    -
+      name: "republish_tf_child_frame_id"
+      value: "odom"
+    -
+      name: "republish_tf_frame_id"
+      value: "map"
+    -
+      name: "republish_tf_child_prefix"
+      value: "a0"
+    -
+      name: "republish_tf_prefix"
+      value: "" # blank, no prefix, share map
+    -
+      name: "republish_tf_input_topic"
+      value: "tf"
+    #~ -
+      #~ name: "republish_tf_output_topic"
+      #~ value: "a1"
+      
+# Robot 0001
+- node:
+    pkg: "robot_follow_pkg"
+    exec: "republish_tf.py"
+    name: "republish_tf_odom_base"
+    namespace: "a200_0001"
+    param:
+    -
+      name: "republish_tf_child_frame_id"
+      value: "base_link"
+    -
+      name: "republish_tf_frame_id"
+      value: "odom"
+    -
+      name: "republish_tf_child_prefix"
+      value: "a1"
+    -
+      name: "republish_tf_prefix"
+      value: "a1"
+    -
+      name: "republish_tf_input_topic"
+      value: "tf"
+    #~ -
+      #~ name: "republish_tf_output_topic"
+      #~ value: "a1"
+
+- node:
+    pkg: "robot_follow_pkg"
+    exec: "republish_tf.py"
+    name: "republish_tf_map_odom"
+    namespace: "a200_0001"
+    param:
+    -
+      name: "republish_tf_child_frame_id"
+      value: "odom"
+    -
+      name: "republish_tf_frame_id"
+      value: "map"
+    -
+      name: "republish_tf_child_prefix"
+      value: "a1"
+    -
+      name: "republish_tf_prefix"
+      value: "" # blank, no prefix, share map
+    -
+      name: "republish_tf_input_topic"
+      value: "tf"
+    #~ -
+      #~ name: "republish_tf_output_topic"
+      #~ value: "a1"

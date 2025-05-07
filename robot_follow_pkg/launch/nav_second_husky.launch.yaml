@@ -1,0 +1,90 @@
+
+launch:
+
+# ROBOT 0000
+# args that can be set from the command line or a default will be used
+- arg:
+    name: "home_folder"
+    default: "/home/developer/"
+
+# include another launch file
+#~ - include:
+    #~ file: "$(find-pkg-share clearpath_gz)/launch/simulation.launch.py"
+    
+#~ - include:
+    #~ file: "$(find-pkg-share clearpath_nav2_demos)/launch/localization.launch.py"
+    #~ arg:
+        #~ - name: "setup_path"
+          #~ value: "$(var home_folder)/clearpath/"
+        #~ - name: "use_sim_time"
+          #~ value: "true"
+    
+#~ # include another launch file in the chatter_ns namespace
+#~ - group:
+    #~ - push-ros-namespace:
+        #~ namespace: "/a200_0000"
+    #~ - include:
+        #~ file: "$(find-pkg-share clearpath_viz)/launch/view_navigation.launch.py"
+    
+#~ - include:
+    #~ file: "$(find-pkg-share clearpath_nav2_demos)/launch/nav2.launch.py"
+    #~ arg:
+        #~ - name: "setup_path"
+          #~ value: "$(var home_folder)/clearpath/"
+        #~ - name: "use_sim_time"
+          #~ value: "true"
+
+
+# ROBOT 0001
+
+#~ - include:
+    #~ file: "$(find-pkg-share clearpath_gz)/launch/simulation.launch.py"
+- include:
+    file: "$(find-pkg-share clearpath_gz)/launch/robot_spawn.launch.py"
+    arg:
+    - name: "setup_path"
+      value: "$(var home_folder)/clearpath2/"
+    - name: "use_sim_time"
+      value: "true"
+    - name: "x"
+      value: "-1.5"
+    
+- include:
+    file: "$(find-pkg-share clearpath_nav2_demos)/launch/localization.launch.py"
+    arg:
+        - name: "setup_path"
+          value: "$(var home_folder)/clearpath2/"
+        - name: "use_sim_time"
+          value: "true"
+
+    
+#~ - group:
+    #~ - push-ros-namespace:
+        #~ namespace: "/a200_0001"
+        
+#~ - include:
+    #~ file: "$(find-pkg-share clearpath_nav2_demos)/launch/localization.launch.py"
+    #~ arg:
+    #~ - name: "setup_path"
+      #~ value: "$(var home_folder)/clearpath2/"
+    #~ - name: "use_sim_time"
+      #~ value: "true"
+    
+- group:
+    - push-ros-namespace:
+        namespace: "/a200_0001"
+    - include:
+        file: "$(find-pkg-share clearpath_viz)/launch/view_navigation.launch.py"
+    
+#~ - group:
+    #~ - push-ros-namespace:
+        #~ namespace: "/a200_0001"
+        
+- include:
+    file: "$(find-pkg-share clearpath_nav2_demos)/launch/nav2.launch.py"
+    arg:
+        - name: "setup_path"
+          value: "$(var home_folder)/clearpath2/"
+        - name: "use_sim_time"
+          value: "true"
+
