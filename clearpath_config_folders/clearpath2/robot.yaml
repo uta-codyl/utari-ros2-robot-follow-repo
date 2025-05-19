@@ -3,8 +3,8 @@ version: 0
 system:
   username: robot
   hosts:
-    - hostname: developer-Precision-5690
-      ip: 10.88.1.5
+    - hostname: #[insert hostname]
+      ip: #[insert IP address]
   ros2:
     namespace: a200_0001
     domain_id: 0
