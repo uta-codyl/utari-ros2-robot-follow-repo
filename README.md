@@ -15,8 +15,12 @@ Before starting the robot_follow_pkg the Clearpath simuator must be configured. 
 https://docs.clearpathrobotics.com/docs/ros/installation/offboard_pc/  
 https://docs.clearpathrobotics.com/docs/ros/tutorials/simulator/overview  
 More specifically: 
-- the setup folder(s) must be configure
-- the setup.bash(s) must be 
+- The setup folder(s) must be configured
+- The different robot.yaml files must use a differenet namespace for a multiple robot simulation
+- The robot.yaml file(s) must have the ip address and hostname updated.
+  - Unstable and unpredictable performance results from leaving these blank or incorrect 
+- The setup.bash(s) must be generated via the clearpath command in the offboard_pc instructions
+- 
 
 
 
