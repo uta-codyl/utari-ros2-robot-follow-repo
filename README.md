@@ -1,4 +1,8 @@
 # utari-ros2-robot-follow-repo
+This repository contains a ROS2 packages developed by the University of Texas at Arlington Research Institute (UTARI) designed to enable robot following using multiple methods including a proportional controller and waypoint navigaition.   
+This project has been tested in simulation using:  
+- Ubuntu 22.04
+- ROS2 Humble
 
 ## Project folders 
 
@@ -25,7 +29,9 @@ More specifically the above instructions include:
 - The setup.bash(s) must be generated via the clearpath command in the offboard_pc instructions
 
 ## ROS Nodes
-
+### republish_tf.py
+This file listens to the tf topic inside a given namespace for key parent and child link pairs. When the specified parent and child combinations are found, they are republished to the global /tf topic. A prefix can be added to the links before republishing them in the global /tf topic.   
+This node allows each robot to published limited important coordiates and transforms into the global space to share with other robotic systems.  
 
 ## ROS Params
 This ROS2 repository does include 1 parameter files that predefines parameter values, and the other nodes make use of checking for parameters and using default value if those parameters do not already exist. The launch files included do modify parameters used by depended packages such as the Clearpath simulator.  
