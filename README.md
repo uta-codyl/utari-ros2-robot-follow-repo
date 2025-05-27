@@ -4,6 +4,10 @@ This project has been tested in simulation using:
 - Ubuntu 22.04
 - ROS2 Humble
 
+
+## Project Startup Commands 
+
+
 ## Project folders 
 
 ### robot_follow_pkg  
@@ -31,7 +35,14 @@ More specifically the above instructions include:
 ## ROS Nodes
 ### republish_tf.py
 This file listens to the tf topic inside a given namespace for key parent and child link pairs. When the specified parent and child combinations are found, they are republished to the global /tf topic. A prefix can be added to the links before republishing them in the global /tf topic.   
-This node allows each robot to published limited important coordiates and transforms into the global space to share with other robotic systems.  
+This node allows each robot to published limited important coordiates and transforms into the global space to share with other robotic systems. Each instance of this node will listen for one specific parent-child link pair in a specific namespace and republish the link pair into another specified topic. The output topic can be inside of another namespace, but the primary goal of the node is to republish in the global namespace.  
+The input topic/namespace, parent frame, child frame, and output topic are all specified via ROS parameters. More detail is given in a below section. Here is a quick list of the parameters for this node.  
+- republish_tf_child_frame_id (str)
+- republish_tf_frame_id (str)
+- republish_tf_child_prefix (str)
+- republish_tf_prefix (str)
+- republish_tf_input_topic (str)
+- republish_tf_output_topic (str)
 
 ## ROS Params
 This ROS2 repository does include 1 parameter files that predefines parameter values, and the other nodes make use of checking for parameters and using default value if those parameters do not already exist. The launch files included do modify parameters used by depended packages such as the Clearpath simulator.  
@@ -59,8 +70,6 @@ Listed below are all parameters modified from dependent packages and parameters 
     - republish_tf_prefix
     - republish_tf_input_topic
 
-
-## Project Startup Commands 
 
 
 ## ROS Topics 
