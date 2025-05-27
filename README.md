@@ -44,6 +44,17 @@ The input topic/namespace, parent frame, child frame, and output topic are all s
 - republish_tf_input_topic (str)
 - republish_tf_output_topic (str)
 
+### follow.py
+This node is responsible for commanding a robot to follow another specified robot. Two methods are available: a proportional controller and waypoint navigaition using the Nav2 stack. This node will listen to the tf topic in the same namespace as the node and location either the specified robot or a point just behind that robot depending on parameter configuration. 
+The use of these two modes is controlled via the parameter "use_nav_goal". If it is set to true (default) the node will send Nav2 waypoint navigation goals to a point two meters behind the lead robot and facing the same direction as the lead robot. If the parameter is set to false, a simple proportional controller will be used to move the robot directly toward the lead robot until they are within 2 meters of eachother and then a zero velocity signal will be sent. 
+The input and output topics, modes, and starting behavior of this node is configured via ROS2 parameters. These are described in detail later in this docuement. Here is a quick list of the parameters for this node.  
+- prefix0 (str)
+- prefix1 (str)
+- output_vel_topic (str)
+- output_goal_topic (bool)
+- use_nav_goal (bool)
+- start_enabled (bool)
+
 ## ROS Params
 This ROS2 repository does include 1 parameter files that predefines parameter values, and the other nodes make use of checking for parameters and using default value if those parameters do not already exist. The launch files included do modify parameters used by depended packages such as the Clearpath simulator.  
 Listed below are all parameters modified from dependent packages and parameters that can be modified for this repository.  
