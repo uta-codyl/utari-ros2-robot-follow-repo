@@ -31,6 +31,23 @@ More specifically the above instructions include:
 
 ## Project Startup Commands 
 
+```bash
+[Start the Gazebo simulation, RVIZ, and first robot]
+$ ros2 launch robot_follow_pkg nav_first_husky.launch.yaml
+[new terminal]
+[Spawn the second robot with navigation and RVIZ]
+$ ros2 launch robot_follow_pkg nav_two_husky.launch.yaml
+[new terminal]
+[This will launch 4 nodes to republish and prefix tf links to the global space]
+$ ros2 launch robot_follow_pkg husky_follow_sim.launch.yaml
+[new terminal]
+[This will start nav2 for the first robot so it can move autonomously]
+$ ros2 launch robot_follow_pkg nav_husky.launch
+[new terminal]
+[This will start the robot following code]
+ros2 run robot_follow_pkg follow.py 
+[You can now move the first robot using RVIZ nav goals and watch the second robot follow]
+```
 
 ## ROS Nodes
 ### republish_tf.py
@@ -77,14 +94,50 @@ Listed below are all parameters modified from dependent packages and parameters 
     - republish_tf_child_frame_id
       - This is the name of a child frame that needs to be republished into the global tf topic
     - republish_tf_frame_id
+      - This is the name of the parent frame that needs to be republished into the global tf topic
     - republish_tf_child_prefix
+      - This is a string prefix to append to the child frame when it is republished into the global tf topic
     - republish_tf_prefix
+      - This is a string prefix to append to the parent frame when it is republished into the global tf topic
     - republish_tf_input_topic
-
+      - This is the topic name to listen for the tf links in before republishing them 
+- File: robot_follow_pkg/robot_follow_pkg/follow.py
+  - prefix0 
+    - This parameter specifies the prefix for the lead robot
+    - This is required for the node to find the location of the lead robot
+  - prefix1 
+    - This parameter specifies the prefix for the following robot
+    - This is required for the node to find the location of the following robot
+  - output_vel_topic 
+    - This specifies the topic to send velocity commands to the following robot
+  - output_goal_topic 
+    - This specifies the topic to send navigation goals to the following robot
+  - use_nav_goal 
+    - This chooses the following mode of the node 
+    - True: The node will send nav2 navigational goals to a point 2 meters behind the lead robot with the same heading
+    - False: The node will use a proportional controller to send yaw and x velocity commands to the following robot to move directly toward the lead robot and stop when within 2 meters. 
+  - start_enabled 
+    - This topic activates and deactivates the following mode
+    - if deactivated the node will idle until activated 
 
 
 ## ROS Topics 
+Most of the topics in this package have reconfigurable names via ROS parameters. This section will list them by their default names 
+### Node: republish_tf.py
 
+
+
+### Node: follow.py
+
+Default name: /a200_0001/cmd_vel  
+Type: geometry_msgs Twist  
+Controlled by parameter: output_vel_topic  
+This topic must be configured so that cmd velocity signals can be sent to the following robot. If this is not done the proportional controller mode will not function.  
+  
+Default name: follow/enable  
+Type: std_msgs Bool  
+Controlled by parameter: None  
+This topic activates and deactivates the following node. If a false value is sent the node will ideal until reactivated. If a true value is sent the following mode will activate and move the following robot.  
 
 ## 
 
