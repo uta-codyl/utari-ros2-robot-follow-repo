@@ -5,9 +5,6 @@ This project has been tested in simulation using:
 - ROS2 Humble
 
 
-## Project Startup Commands 
-
-
 ## Project folders 
 
 ### robot_follow_pkg  
@@ -31,6 +28,9 @@ More specifically the above instructions include:
 - The robot.yaml file(s) must have the ip address and hostname updated.
   - Unstable and unpredictable performance results from leaving these blank or incorrect 
 - The setup.bash(s) must be generated via the clearpath command in the offboard_pc instructions
+
+## Project Startup Commands 
+
 
 ## ROS Nodes
 ### republish_tf.py
