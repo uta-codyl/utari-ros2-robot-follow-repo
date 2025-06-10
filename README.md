@@ -8,11 +8,13 @@ This project has been tested in simulation using:
 ## Project Goal and Methodlogy 
 This project enables two following modes for one robot to follow another: A propotional controller, and a waypoint generator for the NAV2 system.    
 The core method to enable these following modes is have both robots using seperate transform frame trees in seperate names spaces. A node (republish_tf.py) in this project will take selected frames in the namespace tf topics and republish them in the global topic space. The bare minimium number of frames are republished in the global space. The following node will run in the global space and listen to only the global tf topic to enable velociy or waypoint signals to be generated. During execuition the tf topics will appear as such:   
+```bash
 /robot1/tf  
 /robot1/tf_static   
 /robot2/tf  
 /robot2/tf_static   
 /tf   
+```
 
 ## Project folders 
 
